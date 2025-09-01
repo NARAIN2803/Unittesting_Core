@@ -86,7 +86,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run:  dotnet test --logger trx --results-directory TestResults
+      run:  dotnet test --logger trx --results-directory TestResults || true
 
     #TestFile
     - name: Test Report
@@ -96,7 +96,7 @@ jobs:
         name: .NET Core Tests
         path: TestResults/*.trx
         reporter: dotnet-trx
-       #fail-on-error: true
+        fail-on-error: true
 
      # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
